@@ -72,4 +72,8 @@ class PageController extends Controller {
 		
 	}
 
+	public function addproduct(Request $request){
+		
+	}
+
 }

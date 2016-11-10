@@ -76,7 +76,7 @@
 					<h3>SHORES</h3>
 					<p class="productDescription" >It's a 2-4 player game to help students understand the two dimensional co-ordinate system. This ocean adventure game makes learning math super fun and easy and sharpens your analytical skills</p>
 					<!--<button class="btn btn-lg btn-primary" type="button" data-toggle="modal" data-target="#myModal2">BUY</button>-->
-					<a href="{{ url('/product/2') }}" class="btn btn-lg btn-primary" type="button" >BUY</a>
+					<a href="{{ url('/product/1') }}" class="btn btn-lg btn-primary" type="button" >BUY</a>
 				</div>
 				<!--<div class="col-md-4 pro">
 					<img src="images/product3.jpg" class="img-responsive">
