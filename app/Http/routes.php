@@ -15,6 +15,7 @@ Route::get('/',['as' => 'index','uses' => 'PageController@index']);
 Route::get('/blog',['as' => 'blog', 'uses' => 'PageController@blog']);
 Route::get('/product/{id}',['as' => 'product', 'uses' => 'PageController@product']);
 Route::get('/addproduct',['as' => 'addproduct','uses' => 'PageController@addproduct']);
+Route::get('/notify',['as' => 'notify','uses' => 'PageController@notify']);
 Route::any('/{page?}',function(){
   return View::make('errors.503');
 })->where('page','.*');

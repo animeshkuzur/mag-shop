@@ -95,7 +95,6 @@
         <div class="col-sm-8">
         	<img src="{{ URL::asset('images/6_testimonials.jpg') }}" width="100%" height="100%" >
         </div>
-
         <div class="col-md-4 text-center add" id="FeedbackForm" width="110%">
             <h4><strong>Leave a comment</strong></h4>
             <div class="row" width="50%">	
@@ -120,9 +119,7 @@
 					  	<input type="submit" name="submit" class="btn btn-default" >
 					</form>
 				</div>
-				
 			</div>
-                     
         </div>
     </div>		
 </div>
@@ -130,10 +127,10 @@
 
 
 
-	<!-- Why -->
+<!-- Why -->
 <div id="why" class="why">
 
-  	<div >
+  	<div>
     	<div class="col-md-12">
 	      	<div class="carousel1 slide" data-ride="carousel" id="quote-carousel">
 	      

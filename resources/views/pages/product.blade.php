@@ -104,7 +104,28 @@
 								</p>
 								
 								<p>
+									@if(($dat->units)>0)
 									<button class="btn btn-danger btn-lg">ADD TO CARD</button>
+									@else
+									<div class="row">
+										<div class="col-md-4">
+											<button class="btn btn-danger btn-lg" disabled="disabled">OUT OF STOCK</button>
+										</div>
+										<div class="col-md-8">
+										{!! Form::open(array('route' => 'notify','method'=>'POST')) !!}
+										<div class="row">
+											<div class="col-xs-8">
+												{!! Form::text('email',null,array('class' => 'form-control input-sm','placeholder' => 'Your email')) !!}
+											</div>
+											<div class="col-xs-4">
+												{!! Form::submit('Notify',array('class'=>'btn btn-primary btn-sm','name'=>'notify')) !!}
+											</div>
+										</div>											
+										{!! Form::close() !!}
+										</div>
+									</div>
+									
+									@endif
 								</p>
 							</div>
 						</div>

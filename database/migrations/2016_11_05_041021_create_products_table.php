@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration {
 			$table->string('age');
 			$table->string('dimensions');
 			$table->decimal('price',6,2);
+			$table->integer('units');
 			$table->timestamps();
 		});
 	}
