@@ -17,7 +17,7 @@
 									<li><a href="{{ url('/blog') }}" class="btn btn-lg">BLOG</a></li>
 									<li><a href="#team" class="btn btn-lg">TEAM</a></li>
 									<li><a href="#contact" class="btn btn-lg ">CONTACT</a></li>
-									<li><a class="btn btn-lg" data-toggle="modal" data-target="#cart"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;CART&nbsp;&nbsp;{{ $items }}</a></li>
+									<li><a class="btn btn-lg" data-toggle="modal" data-target="#cart" id="mycart"><span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;&nbsp;CART&nbsp;&nbsp;<span id="procount2">{{ $items }}</span></a></li>
 								</ul>
 							</div>
 						</div>				

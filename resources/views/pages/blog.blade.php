@@ -47,5 +47,6 @@
 				</div>
 			</div>
 		</div>
+		<meta name="_token" content="{!! csrf_token() !!}" />
 	    <script src="{{ URL::asset('js/scroll.js') }}"></script>
 	@endsection

@@ -452,7 +452,7 @@ Me and my co-founder Atul, ...</p>
   </div>
 </div>
 
-
+		<meta name="_token" content="{!! csrf_token() !!}" />
 	    <script src="{{ URL::asset('js/scroll.js') }}"></script>
 	    <!--<script src="js/tabs.js"></script>-->
 	<script>

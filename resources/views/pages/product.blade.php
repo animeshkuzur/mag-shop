@@ -105,7 +105,7 @@
 								
 								<p>
 									@if(($dat->units)>0)
-									<button class="btn btn-danger btn-lg">ADD TO CARD</button>
+									<button class="btn btn-danger btn-lg" id="addtocart">ADD TO CART</button>
 									@else
 									<div class="row">
 										<div class="col-md-4">
@@ -140,7 +140,37 @@
 		</div>
 	</div>
 
-		
+	
+	<script type="text/javascript">
+	$("#addtocart").click(function (e) {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+        e.preventDefault(); 
+        var data = { 'product_id': {{ $dat->id }} }
+        $.ajax({
+	        type:"POST",
+	        url:'/mag/public/addproduct',
+	        data: data,
+	        dataType: 'json',
+	        success: function(data){
+	        	//console.log(data);
+	            $("#procount").text(data);
+	            $("#procount2").text(data);
+	        },
+	        error: function(data){
+	        	console.log(data);
+	        }
+    	});
+    });
+
+    
+
+    
+    
+	</script>
 
 
 @endsection

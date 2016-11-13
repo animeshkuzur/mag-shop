@@ -14,3 +14,4 @@
 
 	    <script src="{{ URL::asset('https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js') }}"></script>
 		<script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>	
+			
