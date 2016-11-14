@@ -18,7 +18,7 @@
         				total = total + value.price*value.units;
         			});
 
-        			$("div.cart_total").html("Total : ₹<b>"+total+"</b>");
+        			$("div.cart_total").html("Total : ₹<b>"+total+".00</b>");
         		}
         		else{
         			$("div.cart_body").html("<div class='row'><div class='col-md-12'><h4 style='text-align:center;'>Empty Cart!</h4></div></div>");
@@ -53,10 +53,11 @@
                     $("#procount").text(data.items);
                     $("#procount2").text(data.items);
 
-                    $("div.cart_total").html("Total : ₹<b>"+total+"</b>");
+                    $("div.cart_total").html("Total : ₹<b>"+total+".00</b>");
                 }
                 else{
                     $("div.cart_body").html("<div class='row'><div class='col-md-12'><h4 style='text-align:center;'>Empty Cart!</h4></div></div>");
+                    
                 }
             },
             error: function(data){

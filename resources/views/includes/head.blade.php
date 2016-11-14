@@ -13,5 +13,6 @@
     	<link href="{{ URL::asset('https://fonts.googleapis.com/css?family=Open+Sans:400,600,600italic,700,700italic,800,800italic,400italic,300italic,300') }}" rel='stylesheet' type='text/css'>
 
 	    <script src="{{ URL::asset('https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js') }}"></script>
-		<script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>	
+		<script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+		<script src="{{ URL::asset('js/notify.min.js') }}"></script>	
 			

@@ -18,6 +18,12 @@ Route::post('/addproduct',['as' => 'addproduct','uses' => 'CartController@addpro
 Route::get('/notify',['as' => 'notify','uses' => 'PageController@notify']);
 Route::get('/getproducts',['as' => 'getproducts','uses' => 'CartController@getproducts']);
 Route::post('/deleteproduct/{id}',['as' => 'deleteproduct','uses'=>'CartController@deleteproduct']);
+Route::post('/plusitem/{id}',['as' => 'plusitem','uses'=>'CartController@plusitem']);
+Route::post('/minusitem/{id}',['as' => 'minusitem','uses'=>'CartController@minusitem']);
+Route::get('/checkout',['as' => 'checkout','uses' => 'PageController@checkout']);
+Route::post('/payment',['as' => 'payment','uses' => 'PageController@payment']);
+Route::get('/success/{id}',['as' => 'success','uses' => 'PageController@success']);
+Route::get('/fail/{id}',['as' => 'fail','uses' => 'PageController@fail']);
 Route::any('/{page?}',function(){
   return View::make('errors.503');
 })->where('page','.*');

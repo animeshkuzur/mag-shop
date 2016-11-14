@@ -157,6 +157,11 @@
 	        dataType: 'json',
 	        success: function(data){
 	        	//console.log(data);
+	        	$.notify('Product added to cart',{
+	        		position: 'bottom center',
+	        		autoHideDelay: 2000,
+	        		className: 'success',
+	        	});
 	            $("#procount").text(data);
 	            $("#procount2").text(data);
 	        },

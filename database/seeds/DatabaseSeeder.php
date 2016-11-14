@@ -36,8 +36,9 @@ class ProductTableSeeder extends Seeder {
         	'players' => '2-4',
         	'duration' => '30-45 mins',
         	'age' => '8 years and above',
-        	'dimensions' => '42 X 19.5 X 5 cm3',
+        	'dimensions' => '42cm X 19.5cm X 5cm',
         	'price' => '700.00',
+        	'units' => 10,
         ]);
 
         DB::table('products')->insert([
@@ -48,8 +49,9 @@ class ProductTableSeeder extends Seeder {
         	'players' => '2',
         	'duration' => '15-20 minutes',
         	'age' => '8 years and above',
-        	'dimensions' => '25 X 11 X 2.5 cm3',
+        	'dimensions' => '25cm X 11cm X 2.5cm',
         	'price' => '400.00',
+        	'units' => 10,
         ]);
     }
 }

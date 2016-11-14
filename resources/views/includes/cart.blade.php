@@ -27,7 +27,7 @@
 				</div>
 		      	<div class="modal-footer">
 		        	<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		        	<button type="button" class="btn btn-danger">Check Out</button>
+		        	<a href="{{ url('/checkout') }}" class="btn btn-danger">Check Out</a>
 		      	</div>
 		    </div>
 	  	</div>

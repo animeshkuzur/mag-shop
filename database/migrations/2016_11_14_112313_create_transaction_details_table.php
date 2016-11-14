@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateNotifyUsersTable extends Migration {
+class CreateTransactionDetailsTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,15 +12,16 @@ class CreateNotifyUsersTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('notify_users', function(Blueprint $table)
+		Schema::create('transaction_details', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->string('email');
+			$table->integer('transaction_id')->unsigned();
 			$table->integer('product_id')->unsigned();
 			$table->timestamps();
 		});
-		Schema::table('notify_users', function($table) {
+		Schema::table('transaction_details', function($table) {
        		$table->foreign('product_id')->references('id')->on('products');
+       		$table->foreign('transaction_id')->references('id')->on('transactions');
    		});
 	}
 
@@ -31,7 +32,7 @@ class CreateNotifyUsersTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('notify_users');
+		Schema::drop('transaction__details');
 	}
 
 }
