@@ -38,7 +38,7 @@ class ProductTableSeeder extends Seeder {
         	'age' => '8 years and above',
         	'dimensions' => '42cm X 19.5cm X 5cm',
         	'price' => '700.00',
-        	'units' => 10,
+        	'units' => '10',
         ]);
 
         DB::table('products')->insert([
@@ -51,7 +51,7 @@ class ProductTableSeeder extends Seeder {
         	'age' => '8 years and above',
         	'dimensions' => '25cm X 11cm X 2.5cm',
         	'price' => '400.00',
-        	'units' => 10,
+        	'units' => '10',
         ]);
     }
 }

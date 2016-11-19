@@ -32,7 +32,7 @@ class CreateTransactionDetailsTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('transaction__details');
+		Schema::drop('transaction_details');
 	}
 
 }

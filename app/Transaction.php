@@ -6,6 +6,8 @@ class Transaction extends Model {
 
 	protected $fillable = ['name', 'email', 'address','phone','city','state','zipcode','country','amount','paid'];
 
+    public $timestamps = true;
+
 	public static $checkout_validation_rules = [
 		'name' => 'required',
         'email' => 'required|email',

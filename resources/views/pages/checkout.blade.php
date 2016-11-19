@@ -99,7 +99,9 @@
 					</div>
 					<div class="col-md-9">
 						{!! Form::text('country', null, array('class' => 'form-control input-sm','placeholder'=>'Country')) !!}
+						<input type="hidden" name="service_provider" value="payu_paisa" size="64" />
 					</div>
+
 				</div>
 			</div>
 			<div class="col-xs-6">

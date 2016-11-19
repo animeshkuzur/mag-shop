@@ -188,14 +188,29 @@ class PageController extends Controller {
 		}
 		$PAY_URL = "https://test.payu.in/_payment";
 		$MERCHANT_KEY = "Ta7HRFYE";
-		$SALT = "r3LdLsTBt6";
+		$productinfo = "Educational Games";
 		
 		$pay_data = array(
-			''
+			'key' => $MERCHANT_KEY,
+			'txnid' => $transaction_id,
+			'amount' => $price,
+			'productinfo' => $productinfo,
+			'firstname' => $info['name'],
+			'address1' => $info['address'],
+			'city' => $info['city'],
+			'state' => $info['state'],
+			'zipcode' => $info['zipcode'],
+			'country' => $info['country'],
+			'email' => $info['email'],
+			'phone' => $info['phone'],
+			'surl' => 'https://localhost/xampp/payumoney/success.php',
+			'furl' => 'https://localhost/xampp/payumoney/failure.php',
+			'curl' => 'https://localhost',
+			'service_provider' => $info['service_provider']
 			);
-		$retHashSeq = $MERCHANT_KEY.'|'.$transaction_id.'|'.$price.'|'.$SALT;
 
-
+		$order = \Indipay::gateway('PayUMoney')->prepare($pay_data);
+		return \Indipay::process($order);
 	}
 
 }
