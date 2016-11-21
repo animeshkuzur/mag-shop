@@ -73,16 +73,42 @@ class PageController extends Controller {
 		
 	}
 
-	public function success($id,Request $request){
+	public function success(Request $request){
+		$data = $request->all();
+		$cart_id =0; $items=0;
+		$cookie = Cookie::get('carts');
+		$response = \Indipay::response($request);
+		//dd($response);
+		if($data['status'] == 'success'){
+			\DB::table('transactions')->where('id',$data['txnid'])->update(['paid' => 1]);
+		}
+		$product = \DB::select('SELECT p.name,p.price,p.category,td.transaction_id,td.product_id,count(td.product_id) as units FROM transaction_details td,products p WHERE td.transaction_id = '.$data['txnid'].' AND td.product_id = p.id group by td.product_id');
+
+		$ids = \DB::table('carts')->where('cookie_id',$cookie)->get(['id']);
+		foreach ($ids as $id) {
+			$cart_id = $id->id;
+		}
+		\DB::table('cart_items')->where('cart_id',$cart_id)->delete();
+		\DB::table('carts')->where('cookie_id',$cookie)->delete();
+		
+		Cookie::queue('carts',$cart_id);
+		
+		return view('pages.success',['data' => $data,'product' => $product, 'items' => $items]);
+
 
 	}
 
-	public function fail($id,Request $request){
-
-	}
-
-	public function cancel($id,Request $request){
-
+	public function fail(Request $request){
+		$data = $request->all();
+		$cart_id =0; $items=0;
+		$response = \Indipay::response($request);
+		$cookie = Cookie::get('carts');
+		$ids = \DB::table('carts')->where('cookie_id',$cookie)->get(['id']);
+		foreach ($ids as $id) {
+			$cart_id = $id->id;
+		}
+		$items = \DB::table('cart_items')->where('cart_id',$cart_id)->count();
+		return view('pages.fail',['items'=>$items]);
 	}
 
 	public function error(){
@@ -156,6 +182,7 @@ class PageController extends Controller {
 		if($items<1){
 			return back()->withInput()->withErrors(['cart' => 'Cannot checkout with an empty cart']);
 		}
+
 		$status = \DB::table('transactions')->insert([
 				'name' => $info['name'],
 				'email' => $info['email'],
@@ -186,10 +213,15 @@ class PageController extends Controller {
 					'product_id' => $pl->product_id,
 				]);
 		}
-		$PAY_URL = "https://test.payu.in/_payment";
-		$MERCHANT_KEY = "Ta7HRFYE";
+		$PAY_URL = "https://secure.payu.in/_payment";
+		$MERCHANT_KEY = "bZCUwB0B";
+		$SALT = "VuhVWe215C";
 		$productinfo = "Educational Games";
 		
+		//$hash_string = $MERCHANT_KEY.'|'.$transaction_id.'|'.$price.'|'.$productinfo.'|'.$info['name'].'|'.$info['email'].'|||||||||||'.$SALT;
+
+		//$hash = strtolower(hash('sha512', $hash_string));
+		$price = 1;
 		$pay_data = array(
 			'key' => $MERCHANT_KEY,
 			'txnid' => $transaction_id,
@@ -203,14 +235,27 @@ class PageController extends Controller {
 			'country' => $info['country'],
 			'email' => $info['email'],
 			'phone' => $info['phone'],
-			'surl' => 'https://localhost/xampp/payumoney/success.php',
-			'furl' => 'https://localhost/xampp/payumoney/failure.php',
-			'curl' => 'https://localhost',
+			'surl' => 'https://localhost/mag/public/success',
+			'furl' => 'https://localhost/mag/public/fail',
 			'service_provider' => $info['service_provider']
 			);
 
 		$order = \Indipay::gateway('PayUMoney')->prepare($pay_data);
 		return \Indipay::process($order);
+
+		/*$options = array( 
+  			'http' => array( 
+    			'header' => "Content-type: application/x-www-form-urlencoded\r\n", 
+    			'method' => 'POST', 
+    			'content' => http_build_query($pay_data) 
+    		), 
+  		); 
+		$context = stream_context_create($options); 
+		$result = 
+		file_get_contents($PAY_URL, false, $context); 
+		if ($result === FALSE) { //error handling } 
+		var_dump($result); 
+		*/
 	}
 
 }

@@ -33,13 +33,38 @@ Route::get('/checkout',['as' => 'checkout','uses' => 'PageController@checkout'])
 
 Route::post('/payment',['as' => 'payment','uses' => 'PageController@payment']);
 
-Route::post('/success/{id}',['as' => 'success','uses' => 'PageController@success']);
+Route::post('/success',['as' => 'success','uses' => 'PageController@success']);
 
-Route::post('/fail/{id}',['as' => 'fail','uses' => 'PageController@fail']);
+Route::post('/fail',['as' => 'fail','uses' => 'PageController@fail']);
 
-Route::post('/cancel/{id}',['as' => 'cancel','uses'=>'PageController@cancel']);
+Route::get('/test', function(){
+	$cookie = \Cookie::get('carts');
+		$ids = 0; $cart_id = 0;
+		if(!$cookie){
+			$cart_id = time().mt_rand();
+			Cookie::queue('carts',$cart_id,85000);
+			\DB::table('carts')->insert(['cookie_id' => $cart_id]);
+			$ids = \DB::table('carts')->where('cookie_id',$cart_id)->get(['id']);
+		}
+		else{
+			$ids = \DB::table('carts')->where('cookie_id',$cookie)->get(['id']);
+		}
+		foreach ($ids as $ido) {
+			$cart_id = $ido->id;
+		}
+		$items = \DB::table('cart_items')->where('cart_id',$cart_id)->count();
+		if($items){
+			return view('pages.success',['items' => $items]);	
+		}
+		else{
+			return view('pages.success',['items' => $items]);
+		}
+	//return View::make('pages.success');
+});
 
 Route::any('/{page?}','PageController@error');
+
+
 
 /*Route::any('/{page?}',function(){
   return View::make('errors.404');

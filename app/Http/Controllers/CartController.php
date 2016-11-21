@@ -46,10 +46,12 @@ class CartController extends Controller {
 			foreach ($check as $ch) {
 				$cart_id = $ch->id;
 			}
-			\DB::table('cart_items')->insert([
+			for ($i=0; $i < $rdata['quantity']; $i++) { 
+				\DB::table('cart_items')->insert([
 					'cart_id' => $cart_id,
 					'product_id' => $rdata['product_id'],	
 				]);
+			}
 			$items = \DB::table('cart_items')->where('cart_id',$cart_id)->count();
 			return $items;
 		}

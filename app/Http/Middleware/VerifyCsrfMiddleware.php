@@ -6,6 +6,13 @@ use Illuminate\Support\Facades\Config;
 
 class VerifyCsrfMiddleware extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken {
 
+
+    protected $except_urls = [
+        '/success',
+        '/fail',
+        '/cancel',
+    ];
+
     public function handle($request, Closure $next)
     {
         if ($this->isReading($request) || $this->excludedRoutes($request) || $this->tokensMatch($request))

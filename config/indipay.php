@@ -12,7 +12,7 @@ return [
 
     'gateway' => 'PayUMoney',                // Replace with the name of default gateway you want to use
 
-    'testMode'  => true,                   // True for Testing the Gateway [For production false]
+    'testMode'  => false,                   // True for Testing the Gateway [For production false]
 
     'ccavenue' => [                         // CCAvenue Parameters
         'merchantId'  => env('INDIPAY_MERCHANT_ID', ''),
@@ -62,7 +62,8 @@ return [
 
     // Add your response link here. In Laravel 5.2 you may use the api middleware instead of this.
     'remove_csrf_check' => [
-        'indipay/response'
+        'success',
+        'fail',
     ],
 
 
