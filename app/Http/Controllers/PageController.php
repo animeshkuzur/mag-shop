@@ -107,6 +107,8 @@ class PageController extends Controller {
 		foreach ($ids as $id) {
 			$cart_id = $id->id;
 		}
+		\DB::table('transaction_details')->where('transaction_id',$data['txnid'])->delete();
+		\DB::table('transactions')->where('id',$data['txnid'])->delete();
 		$items = \DB::table('cart_items')->where('cart_id',$cart_id)->count();
 		return view('pages.fail',['items'=>$items]);
 	}

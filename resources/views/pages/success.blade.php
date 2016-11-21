@@ -10,7 +10,7 @@
 	<div class="container">
 	<br>
 	<div class="alert alert-success" role="alert">
-	<strong>Payment Successful!</strong> Thank you for shoping with us. Below is the payment receipt.
+	<strong>Payment Successful!</strong> Thank you for shoping with us. Below is the payment receipt and shipping details. 
 	</div>
 		<div class="border">
 		<div class="row">
